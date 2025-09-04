@@ -1,0 +1,106 @@
+{
+    "openapi": "3.0.1",
+    "info": {
+        "title": "Weather Forecast API",
+        "description": "An API that predicts upcoming weather",
+        "contact": {
+            "name": "Contoso",
+            "url": "https://contoso.com/support",
+            "email": "api@contoso.com"
+        },
+        "version": "1.0"
+    },
+    "servers": [
+        {
+            "url": "https://apim-demo-nzn-api.azure-api.net/weather-forecast"
+        }
+    ],
+    "paths": {
+        "/api/weatherforecast": {
+            "get": {
+                "tags": [
+                    "weather"
+                ],
+                "summary": "Get the weather forecast",
+                "description": "Returns the weather forecast for the next five days.",
+                "operationId": "GetWeatherForecast",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/WeatherForecast"
+                                    }
+                                },
+                                "example": [
+                                    {
+                                        "date": "string",
+                                        "temperatureC": 0,
+                                        "summary": "string",
+                                        "temperatureF": 0
+                                    }
+                                ]
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "WeatherForecast": {
+                "type": "object",
+                "properties": {
+                    "date": {
+                        "type": "string",
+                        "format": "date"
+                    },
+                    "temperatureC": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "summary": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "temperatureF": {
+                        "type": "integer",
+                        "format": "int32",
+                        "readOnly": true
+                    }
+                },
+                "additionalProperties": false
+            }
+        },
+        "securitySchemes": {
+            "apiKeyHeader": {
+                "type": "apiKey",
+                "name": "Ocp-Apim-Subscription-Key",
+                "in": "header"
+            },
+            "apiKeyQuery": {
+                "type": "apiKey",
+                "name": "subscription-key",
+                "in": "query"
+            }
+        }
+    },
+    "security": [
+        {
+            "apiKeyHeader": []
+        },
+        {
+            "apiKeyQuery": []
+        }
+    ],
+    "tags": [
+        {
+            "name": "weather",
+            "description": "Weather forecast operations"
+        }
+    ]
+}
