@@ -2,12 +2,11 @@
   "name": "Universal + Kiota Dev Container",
   "image": "mcr.microsoft.com/devcontainers/universal:2",
   "features": {
-    "ghcr.io/devcontainers/features/docker-in-docker:2": {},
     "ghcr.io/devcontainers/features/node:1": {
-      "version": "20"
+      "version": "22.19.0"
     },
     "ghcr.io/devcontainers/features/dotnet:1": {
-      "version": "8.0"
+      "version": "9.0"
     }
   },
   "postCreateCommand": "dotnet tool install --global Microsoft.OpenApi.Kiota && export PATH=$PATH:/root/.dotnet/tools && kiota --version",
@@ -23,3 +22,4 @@
   }
 
 }
+
