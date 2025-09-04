@@ -1,0 +1,38 @@
+name: Sync Issues to Forks
+
+on:
+  workflow_dispatch:
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Authenticate GitHub CLI
+      run: echo "${{ secrets.PAT }}" | gh auth login --with-token
+
+    - name: Sync Issues
+      env:
+        SOURCE_REPO: marcel-net/react-nextjs-forecast
+        TARGET_FORKS: |
+          marcel-net/classroom-demo-forecast-react-nextjs-forecast
+          marcel-net/forecast-marcelmedina-student1
+      run: |
+        echo "Fetching unsynced issues from $SOURCE_REPO..."
+        issue_numbers=$(gh issue list -R "$SOURCE_REPO" --label "unsynced" --json number --jq '.[].number')
+
+        for issue_number in $issue_numbers; do
+          title=$(gh issue view $issue_number -R "$SOURCE_REPO" --json title --jq '.title')
+          body=$(gh issue view $issue_number -R "$SOURCE_REPO" --json body --jq '.body')
+          echo "Processing Issue #$issue_number: $title"
+
+          while read -r target; do
+            echo "  Copying to $target..."
+            gh issue create -R "$target" \
+              --title "$title" \
+              --body "_Copied from $SOURCE_REPO issue #$issue_number_\n\n$body"
+          done <<< "$TARGET_FORKS"
+
+          echo "  Marking issue #$issue_number as synced"
+          gh issue edit "$issue_number" -R "$SOURCE_REPO" --remove-label "unsynced" --add-label "synced"
+        done
