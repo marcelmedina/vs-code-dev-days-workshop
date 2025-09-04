@@ -1,12 +1,11 @@
 {
-  "name": "Universal + Kiota Dev Container",
-  "image": "mcr.microsoft.com/devcontainers/universal:2",
+  "name": "Dotnet + Node (features)",
+  "image": "mcr.microsoft.com/devcontainers/base:bookworm",
   "features": {
+    "ghcr.io/devcontainers/features/dotnet:2": { "version": "9.0" },
     "ghcr.io/devcontainers/features/node:1": {
-      "version": "22.19.0"
-    },
-    "ghcr.io/devcontainers/features/dotnet:1": {
-      "version": "9.0"
+      "version": "22",
+      "nodeGypDependencies": false
     }
   },
   "postCreateCommand": "dotnet tool install --global Microsoft.OpenApi.Kiota && export PATH=$PATH:/root/.dotnet/tools && kiota --version",
@@ -20,6 +19,4 @@
       ]
     }
   }
-
 }
-
