@@ -7,12 +7,14 @@ In this lesson, you will learn how to use GitHub Copilot to automate the process
 - Ensure you have the `kiota` CLI installed on your machine (already available in this environment).
 - Your workspace should contain the `weather-forecast-swagger.json` file at the root.
 - Your Next.js project should be located in the `forecast/` folder.
+- **Use Copilot Chat in Agent Mode.**
 
 ---
 
 ### Step 1: Ask Copilot to Generate a Kiota TypeScript Client
 
-Open the Copilot chat and enter the following prompt:
+
+Open the Copilot Chat and enter the following prompt:
 
 > Can you please generate a Kiota TypeScript client within `forecast/src/api` for `weather-forecast-swagger.json`?
 
@@ -34,8 +36,7 @@ After running this command, you should see new TypeScript client files generated
 
 ### Step 2: Update `package.json` with Kiota Dependencies
 
-
-After the client is generated, ask Copilot to update your project's dependencies with a more explicit prompt:
+After the client is generated, ask Copilot to update your project's dependencies with this prompt:
 
 > Can you please update the existing `package.json` in the `forecast` folder to include the latest recommended Kiota TypeScript dependency?
 
@@ -56,6 +57,24 @@ Your `forecast/package.json` will be updated to include the following dependency
 	}
 }
 ```
+
+---
+
+
+---
+
+### Step 3: Install Dependencies
+
+After updating `package.json`, ask Copilot Chat to install the dependencies:
+
+> Can you please run `npm install` in the `forecast` folder?
+
+Copilot will:
+- Run `npm install` to install all dependencies, including the Kiota package.
+
+**Note: Expected Result**
+
+All dependencies in your `forecast/package.json` will be installed and ready to use in your project.
 
 ---
 
