@@ -32,6 +32,13 @@ cd forecast && kiota generate -l typescript -d ../weather-forecast-swagger.json 
 
 After running this command, you should see new TypeScript client files generated in `forecast/src/api`.
 
+**Bug Fix**
+Open `apiClient.ts` and update line 5 to:
+
+```js
+import { createWeatherForecastFromDiscriminatorValue, type WeatherForecast } from './models/index.ts';
+```
+
 ---
 
 ### Step 2: Update `package.json` with Kiota Dependencies
