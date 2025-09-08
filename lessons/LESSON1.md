@@ -27,7 +27,7 @@ Copilot will:
 The following command will be executed by Copilot:
 
 ```sh
-kiota generate -l typescript -d /workspaces/vs-code-dev-days-workshop/weather-forecast-swagger.json -o /workspaces/vs-code-dev-days-workshop/forecast/src/api
+cd forecast && kiota generate -l typescript -d ../weather-forecast-swagger.json -o src/api
 ```
 
 After running this command, you should see new TypeScript client files generated in `forecast/src/api`.
