@@ -15,7 +15,6 @@ export function createWeatherForecastFromDiscriminatorValue(parseNode: ParseNode
 }
 /**
  * The deserialization information for the current model
- * @param WeatherForecast The instance to deserialize into.
  * @returns {Record<string, (node: ParseNode) => void>}
  */
 // @ts-ignore
@@ -29,16 +28,15 @@ export function deserializeIntoWeatherForecast(weatherForecast: Partial<WeatherF
 }
 /**
  * Serializes information the current object
- * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
- * @param WeatherForecast The instance to serialize from.
  * @param writer Serialization writer to use to serialize this model
  */
 // @ts-ignore
-export function serializeWeatherForecast(writer: SerializationWriter, weatherForecast: Partial<WeatherForecast> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
-    if (!weatherForecast || isSerializingDerivedType) { return; }
-    writer.writeDateOnlyValue("date", weatherForecast.date);
-    writer.writeStringValue("summary", weatherForecast.summary);
-    writer.writeNumberValue("temperatureC", weatherForecast.temperatureC);
+export function serializeWeatherForecast(writer: SerializationWriter, weatherForecast: Partial<WeatherForecast> | undefined | null = {}) : void {
+    if (weatherForecast) {
+        writer.writeDateOnlyValue("date", weatherForecast.date);
+        writer.writeStringValue("summary", weatherForecast.summary);
+        writer.writeNumberValue("temperatureC", weatherForecast.temperatureC);
+    }
 }
 export interface WeatherForecast extends Parsable {
     /**

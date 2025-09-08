@@ -1,8 +1,8 @@
 {
-  "descriptionHash": "F3F029195B1D07E1EDAACDCC0DFA12139828933F0EC43D4403081FF3525B8BDE59395953CC044F8EA6AC1461E92C93322101DD8F29A9CE784647A97A7B3A8365",
+  "descriptionHash": "86B1C09D82020D723EC4F1FCE645077654129CBFD203330E33B4301FDF7E45F839F6E910EFEE5FDC33B6DFEE50EB2D37D2CB551BFDEB41BEFAC9E2FFAD6928F8",
   "descriptionLocation": "../../../weather-forecast-swagger.json",
   "lockFileVersion": "1.0.0",
-  "kiotaVersion": "1.28.0",
+  "kiotaVersion": "1.27.0",
   "clientClassName": "ApiClient",
   "typeAccessModifier": "Public",
   "clientNamespaceName": "ApiSdk",
