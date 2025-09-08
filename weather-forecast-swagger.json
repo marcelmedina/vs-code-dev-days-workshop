@@ -12,11 +12,11 @@
     },
     "servers": [
         {
-            "url": "https://apim-demo-nzn-api.azure-api.net/weather-forecast"
+            "url": "https://apim-mcp-nzn-api.azure-api.net/weather-forecast"
         }
     ],
     "paths": {
-        "/api/weatherforecast": {
+        "/": {
             "get": {
                 "tags": [
                     "weather"
