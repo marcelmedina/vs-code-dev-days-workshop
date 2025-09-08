@@ -10,5 +10,5 @@ This section focuses on taking the data from the API and presenting it in a clea
 
 Check [Lesson 2](./lessons/LESSON2.md).
 
-## 3 - Documentation 📝
-Students will explore the importance of writing clear and helpful documentation for their code and projects. This includes commenting code, writing README files, and creating API documentation if they are building their own services. The goal is to ensure that others (and their future selves) can understand and work with the code easily.
+## 3 - Run the Forecast API Locally ⚡
+If time allows, students can run the Forecast API locally. Clone the project onto your machine and follow the instructions in the [API README](https://github.com/marcelmedina/vs-code-dev-days-api/blob/main/README.md) to start the server and test it with your client app.
