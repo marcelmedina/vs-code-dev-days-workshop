@@ -16,7 +16,7 @@ In this lesson, you will learn how to use GitHub Copilot to automate the process
 
 Open the Copilot Chat and enter the following prompt:
 
-> Can you please generate a Kiota TypeScript client within `forecast/src/api` for `weather-forecast-swagger.json`?
+> Can you please generate a Kiota TypeScript client within `forecast/src/api` for `weather-forecast-swagger.json`? (Kiota CLI is already available)
 
 Copilot will:
 - Use the `kiota` CLI to generate a TypeScript client based on the OpenAPI definition.
