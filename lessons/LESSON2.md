@@ -42,10 +42,25 @@ Copilot may struggle to find the correct Kiota implementation. In the end you sh
 "use client";
 
 import { useEffect, useState } from "react";
-import { createApiClient } from "../api/apiClient";
+import { createWeatherForecastClient } from "../api/weatherForecastClient";
 import { FetchRequestAdapter } from "@microsoft/kiota-http-fetchlibrary";
-import type { WeatherForecast } from "../api/models/index";
-import type { RequestInformation } from "@microsoft/kiota-abstractions";
+import { WeatherForecast } from "../api/models/index";
+import { AuthenticationProvider, RequestInformation } from "@microsoft/kiota-abstractions";
+
+class ApimAuthProvider implements AuthenticationProvider {
+  private subscriptionKey: string;
+
+  constructor(subscriptionKey: string) {
+    this.subscriptionKey = subscriptionKey;
+  }
+
+  async authenticateRequest(
+	  request: RequestInformation,
+	  _additionalAuthenticationContext?: Record<string, unknown>
+  ): Promise<void> {
+	  request.headers.set("Ocp-Apim-Subscription-Key", new Set([this.subscriptionKey]));
+  }
+}
 
 export default function Home() {
 	const [forecasts, setForecasts] = useState<WeatherForecast[]>([]);
@@ -55,21 +70,9 @@ export default function Home() {
 	useEffect(() => {
 		const fetchData = async () => {
 			try {
-				const authProvider = {
-					authenticateRequest: async (request: RequestInformation) => {
-						// Set the Ocp-Apim-Subscription-Key header for authentication
-						const apiKey = process.env.NEXT_PUBLIC_API_KEY;
-						if (typeof apiKey === "string") {
-							request.headers.set("Ocp-Apim-Subscription-Key", new Set([apiKey]));
-						} else {
-							console.error("NEXT_PUBLIC_API_KEY environment variable is not set.");
-						}
-						return Promise.resolve();
-					}
-				};
-
+				const authProvider = new ApimAuthProvider(process.env.NEXT_PUBLIC_API_KEY || "");
 				const adapter = new FetchRequestAdapter(authProvider);
-				const client = createApiClient(adapter);
+				const client = createWeatherForecastClient(adapter);
 				const data = await client.get();
 				setForecasts(data ?? []);
 			} catch (err) {
