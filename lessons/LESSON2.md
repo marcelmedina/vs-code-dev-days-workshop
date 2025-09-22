@@ -108,6 +108,8 @@ export default function Home() {
 
 ```
 
+> Run `npm run dev`
+
 ---
 
 ### Step 3: Beautify the Weather Forecast UI
