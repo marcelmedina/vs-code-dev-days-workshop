@@ -108,7 +108,7 @@ export default function Home() {
 
 ```
 
-> Run `npm run dev`
+To Run NextJs, execute `npm run dev`.
 
 ---
 
