@@ -60,7 +60,9 @@ Your `forecast/package.json` will be updated to include the following dependency
 	// ...existing package.json fields...
 	"dependencies": {
 		// ...other dependencies...
-		"@microsoft/kiota-bundle": "1.0.0-preview.96"
+		"@microsoft/kiota-abstractions": "1.0.0-preview.98",
+	    "@microsoft/kiota-bundle": "1.0.0-preview.98",
+	    "@microsoft/kiota-http-fetchlibrary": "1.0.0-preview.98"
 	}
 }
 ```
