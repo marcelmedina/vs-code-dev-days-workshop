@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { createWeatherForecastClient } from "../api/weatherForecastClient";
+import { createApiClient } from "../api/apiClient";
 import { FetchRequestAdapter } from "@microsoft/kiota-http-fetchlibrary";
 import { WeatherForecast } from "../api/models/index";
 import { AuthenticationProvider, RequestInformation } from "@microsoft/kiota-abstractions";
@@ -31,7 +31,7 @@ export default function Home() {
 			try {
 				const authProvider = new ApimAuthProvider(process.env.NEXT_PUBLIC_API_KEY || "");
 				const adapter = new FetchRequestAdapter(authProvider);
-				const client = createWeatherForecastClient(adapter);
+				const client = createApiClient(adapter);
 				const data = await client.get();
 				setForecasts(data ?? []);
 			} catch (err) {
